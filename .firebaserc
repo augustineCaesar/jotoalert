@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "jotoalert": {
+      "hosting": {
+        "app": [
+          "jotoalert"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "jotoalert"
+  }
+}
