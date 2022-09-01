@@ -1,0 +1,20 @@
+
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+
+.form {
+    margin-top: 50% !important;
+    margin-left: 10% !important;
+    width: 80%;
+
+}
+.fitin {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-around !important;
+}

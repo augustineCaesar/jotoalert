@@ -1,0 +1,40 @@
+<ion-content class="main">
+
+  
+
+  <form [formGroup]="credentials" (ngSubmit)="register()" class="form">
+
+    <ion-text>
+      <h1>Sign Up</h1>
+    </ion-text>
+
+    <br><br>
+
+    <ion-item class="ion-margin-botton">
+      
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" placeholder="email" formControlName="email"></ion-input>
+      <ion-note  *ngIf="(email.dirty || email.touched) &&  email.errors ">Email Invalid</ion-note>
+    </ion-item>
+
+    <ion-item class="ion-margin-botton">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" placeholder="password" formControlName="password"></ion-input>
+      <ion-note  *ngIf="(password.dirty || password.touched) &&  password.errors ">Password Invalid</ion-note>
+    </ion-item>
+      <br>
+    <ion-button expand="full" type="submit" [disabled]="!credentials.valid">Sign up</ion-button>
+  </form> 
+
+<br> <br> <br> <br>
+
+  <div class="fitin">
+    <ion-text color="primary">
+      <h5 routerLink="/login">already a user? </h5>
+    </ion-text>
+    <!-- <ion-text color="primary">
+      <h5 routerLink="/forgot">forgot password? </h5>
+    </ion-text> -->
+  </div>
+
+</ion-content>
