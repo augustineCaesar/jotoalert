@@ -1,17 +1,55 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true" >
   <ion-toolbar>
     <ion-title>
       Tab 1
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
+  <ion-searchbar></ion-searchbar>
+  
+  <!-- <ion-button (click)="basicNotifier()">
+    <ion-icon slot="start" name="star"></ion-icon>
+    Notify 
+  </ion-button> -->
+
+  <ion-card>
+    <img src="./../../assets/cowpic.jpg" alt="" srcset="" class="cowPic">
+    <ion-card-header>
+      <ion-card-title>Stella</ion-card-title>
+      <ion-card-subtitle>677T</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Keep close to Nature's heart... and break clear away, once in awhile,
+      and climb a mountain or spend a week in the woods. Wash your spirit clean.
+      
+    </ion-card-content>
+    <ion-item>
+      <ion-button fill="outline" slot="end">Manage </ion-button>
+      <ion-button slot="end" fill="outline">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <ion-badge color="danger"> . </ion-badge>
+      </ion-button>
+    </ion-item>
+    
+  </ion-card>
+  
+ 
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="presentRegister()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  
+  
 </ion-content>
