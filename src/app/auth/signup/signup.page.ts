@@ -45,7 +45,7 @@ export class SignupPage implements OnInit {
         message: 'Creating...'
       });
       
-      this.router.navigateByUrl('/tabs/tab1', {replaceUrl: true}); 
+      this.router.navigateByUrl('/tab1', {replaceUrl: true}); 
 
     } else {
       this.showAlert('Registration failed', 'Please try again'); 

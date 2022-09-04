@@ -55,7 +55,7 @@ export class LoginPage implements OnInit {
     });
     
     console.log('hii manenoz',this.auth.currentUser.uid);
-      this.router.navigateByUrl('/tabs/tab1', {replaceUrl: true}); 
+      this.router.navigateByUrl('/tab1', {replaceUrl: true}); 
     } else {
       this.showAlert('Login failed', 'Please try again'); 
     } 

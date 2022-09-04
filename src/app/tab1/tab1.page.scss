@@ -6,18 +6,24 @@ ion-card {
         // margin-top: 5%;
     }
 
-    ion-button {
-        position: relative;
-     overflow: visible!important;
-    }
 
-    ion-badge {
-        position: absolute; 
-        width: 5px;
-        height: 5px;
-        font-size: 8pt;
-        right: 8px;
-        top: 3px; 
-        z-index: 1000;
-    }
+}
+
+ion-header {
+    background-color: white !important;
+}
+
+ion-button {
+    position: relative;
+ overflow: visible!important;
+}
+
+ion-badge {
+    position: absolute; 
+    width: 5px;
+    height: 5px;
+    font-size: 8pt;
+    right: 8px;
+    top: 3px; 
+    z-index: 1000;
 }
