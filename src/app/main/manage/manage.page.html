@@ -1,9 +1,153 @@
-<ion-header>
+<!-- no of calving & sex,  -->
+
+<!-- milk production, no. of milking,  -->
+
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>manage</ion-title>
+    <ion-buttons slot="secondary">
+      <!-- <ion-button>
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button> -->
+      <ion-button routerLink="/tab1">
+        back
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Manage cow</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="formHolder">
+    <form [formGroup]="cowForm" (ngSubmit)="manageCow()" >
 
+      <ion-card>
+        <ion-item class="section">
+          <ion-icon name="podium-outline" slot="start"></ion-icon>
+          <ion-label>Basic details </ion-label>
+          <!-- <ion-button fill="outline" slot="end">View</ion-button> -->
+        </ion-item>
+      </ion-card>
+
+      <ion-item fill="solid" class="ion-margin-botton">
+        <ion-label position="floating">Cow Name</ion-label>
+        <ion-input type="text" placeholder="name" formControlName="name"></ion-input>
+        <ion-note slot="error" *ngIf="(name.dirty || name.touched) &&  name.errors ">name Invalid</ion-note>
+      </ion-item>
+
+      <ion-item fill="solid" class="ion-margin-botton">
+        <ion-label position="floating"> Cow tag no.</ion-label>
+        <ion-input type="text" placeholder="" formControlName="tag_no"></ion-input>
+        <ion-note slot="error" *ngIf="(tag_no.dirty || tag_no.touched) &&  tag_no.errors ">tag_no Invalid</ion-note>
+      </ion-item>
+
+      <ion-item fill="solid" class="ion-margin-botton">
+        <ion-label position="floating">Date of Birth</ion-label>
+        <ion-input type="Date" placeholder="" formControlName="DOB"></ion-input>
+        <ion-note slot="error" *ngIf="(DOB.dirty || DOB.touched) &&  DOB.errors ">D.O.B Invalid</ion-note>
+      </ion-item>
+
+      <ion-item fill="solid" class="ion-margin-botton">
+        <ion-label position="floating">Breed</ion-label>
+        <ion-input type="text" placeholder="" formControlName="breed"></ion-input>
+        <ion-note slot="error" *ngIf="(breed.dirty || breed.touched) &&  breed.errors ">breed Invalid</ion-note>
+      </ion-item>
+
+      <ion-item >
+        <ion-label position="floating"> Color </ion-label>
+        <ion-select formControlName="color" placeholder="Color" (ionChange)="reset()">
+          <ion-select-option value="Black">Black</ion-select-option>
+          <ion-select-option value="Brown">Brown</ion-select-option>
+          <ion-select-option value="Black and White">Black and White</ion-select-option>
+          <ion-select-option value="Brown and White">Brown and White</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+<!-- state of the animal -->
+      <ion-card>
+        <ion-item class="section">
+          <ion-icon name="ribbon-outline" slot="start"></ion-icon>
+          <ion-label>Current State of the animal</ion-label>
+          <!-- <ion-button fill="outline" slot="end">View</ion-button> -->
+        </ion-item>
+      </ion-card>
+
+      <ion-item>
+        <ion-label > State of the animal</ion-label>
+        <ion-select formControlName="isHeifer" placeholder="" (ionChange)="reset()">
+          <ion-select-option value="isHeifer">is Heifer</ion-select-option>
+          <ion-select-option value="isCow">is Cow</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- if cow -->
+      <ion-item *ngIf="isCow"> 
+        <ion-label > Has the cow been served/inseminated </ion-label>
+        <ion-select formControlName="isServed" placeholder="" (ionChange)="reset()">
+          <ion-select-option value="true">Yes</ion-select-option>
+          <ion-select-option value="false">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- if heifer -->
+      <ion-item *ngIf="izHeifer"> 
+        <ion-label > is the heifer showing signs of heat? </ion-label>
+        <ion-select formControlName="isShowingHeat" placeholder="" (ionChange)="reset()">
+          <ion-select-option value="true">Yes</ion-select-option>
+          <ion-select-option value="false">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-card>
+        <ion-item class="section">
+          <ion-icon name="speedometer-outline" slot="start"></ion-icon>
+          <ion-label>Productin details</ion-label>
+          <!-- <ion-button fill="outline" slot="end">View</ion-button> -->
+        </ion-item>
+      </ion-card>
+      
+      <ion-item fill="solid" class="ion-margin-botton">
+        <ion-label position="floating">Daily Milk Production in litres</ion-label>
+        <ion-input type="number" placeholder="20 " formControlName="milkProduction"></ion-input>
+        <ion-note slot="error" *ngIf="(milkProduction.dirty || milkProduction.touched) &&  milkProduction.errors "> Invalid</ion-note>
+      </ion-item>
+
+      <ion-item > 
+        <ion-label > Milking routine </ion-label>
+        <ion-select formControlName="milkingRoutine" placeholder="" (ionChange)="reset()">
+          <ion-select-option value="Morning and Evening">Morning and Evening</ion-select-option>
+          <ion-select-option value="Morning and Afternoon">Morning and Afternoon</ion-select-option>
+          <ion-select-option value="Morning, Afternoon and Evening">Morning, Afternoon and Evening</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-card>
+        <ion-item class="section">
+          <ion-icon name="list-outline" slot="start"></ion-icon>
+          <ion-label>Extra information</ion-label>
+          <!-- <ion-button fill="outline" slot="end">View</ion-button> -->
+        </ion-item>
+      </ion-card>
+
+      <!-- extra info -->
+
+      <ion-item fill="solid" class="ion-margin-botton">
+        <ion-label position="floating">County</ion-label>
+        <ion-input type="text" placeholder=" " formControlName="county"></ion-input>
+        <ion-note slot="error" *ngIf="(county.dirty || county.touched) &&  county.errors ">county Invalid</ion-note>
+      </ion-item>
+
+      <ion-item fill="solid" class="ion-margin-botton">
+        <ion-label position="floating">Current Manager Details</ion-label>
+        <ion-textarea type="text" placeholder=" " formControlName="currentManager"></ion-textarea>
+        <ion-note slot="error" *ngIf="(currentManager.dirty || currentManager.touched) &&  currentManager.errors ">currentManager Invalid</ion-note>
+      </ion-item>
+
+      
+      <ion-footer collapse="fade">
+        <ion-toolbar class="bottom">
+          <ion-button expand="full" type="submit" [disabled]="!cowForm.valid">submit</ion-button>
+        </ion-toolbar>
+      </ion-footer>
+
+    </form>
+  </div>
 </ion-content>

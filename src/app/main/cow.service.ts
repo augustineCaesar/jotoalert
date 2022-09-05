@@ -9,6 +9,12 @@ import { Cow } from '../interfaces/cow';
 export class CowService {
   cowList = [];
   cowSubject: BehaviorSubject <any>= new BehaviorSubject([]);
+  birth:  {notice: '7889400000', msg: 'Weaning'}; // 3 months in milliseconds
+  checkHeat: {notice: '39447000000', msg: 'Check Signs of Heat'} // 15months in milliseconds
+  checkHeatAgain: {notice: '1728000000', msg: 'Check signs of Heat again '} // 20 days in milliseconds
+  doPregnancyTest: {notice: '7889400000', msg: 'Do a pregnancy test'}
+  dryCow: {notice: '5259600000', msg: 'Dry the cow'}
+  
 
   constructor( private firestore: Firestore) { }
 
