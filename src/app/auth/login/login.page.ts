@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.credentials = this.fb.group({
       email: ['',[Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(4),]],
     })
   }
 
@@ -54,8 +54,8 @@ export class LoginPage implements OnInit {
       message: 'Successful..'
     });
     
-    console.log('hii manenoz',this.auth.currentUser.uid);
-      this.router.navigateByUrl('/tab1', {replaceUrl: true}); 
+    // console.log('hii manenoz',this.auth.currentUser.uid);
+      this.router.navigateByUrl('tabs/tab1', {replaceUrl: true}); 
     } else {
       this.showAlert('Login failed', 'Please try again'); 
     } 

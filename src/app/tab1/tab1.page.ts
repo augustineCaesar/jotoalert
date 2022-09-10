@@ -5,6 +5,10 @@ import { AlertController, LoadingController, ModalController } from '@ionic/angu
 import { LoginPage } from '../auth/login/login.page';
 import { CowService } from '../main/cow.service';
 import { CreatecowPage } from '../main/createcow/createcow.page';
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import { getAll } from '@angular/fire/remote-config';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
 @Component({
@@ -14,8 +18,10 @@ import { CreatecowPage } from '../main/createcow/createcow.page';
 })
 export class Tab1Page implements OnInit{
 
+  currentCowCount;
   filterTerm: string;
   cowList = [];
+  cowSub;
   
   constructor( 
     private router: Router,
@@ -26,14 +32,35 @@ export class Tab1Page implements OnInit{
 
   async ngOnInit() {
      //getCows
-     this.presentLoading();
-     this.cowService.getCows();
-     this.cowService.cowSubject.subscribe(s => {
-      this.cowList = s;
-      console.dir(s);
-     })
-     this.dismissLoading();
+     this.getAll();
     await LocalNotifications.requestPermissions();
+  }
+
+   async getAll() {
+    (await this.loading).present();
+     await this.cowService.getCows();
+     console.log('hapa');
+    this.cowSub = this.cowService.cowSubject.subscribe(s => {
+
+      this.cowList = s;
+      console.dir(this.cowList);
+      this.currentCowCount = s.length;
+      console.log(this.currentCowCount);
+      console.dir(s);
+     });
+
+     (await this.loading). dismiss();
+   }
+  doRefresh($event){
+    console.log($event);
+    this.getAll();
+   
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      $event.target.complete();
+    }, 4000);
   }
 
   async basicNotifier() {
@@ -56,6 +83,8 @@ export class Tab1Page implements OnInit{
     }
     this.router.navigateByUrl('/manage', navigationExtras);
   }
+
+
 
   async presentRegister() {
     console.log('clicked!');
@@ -97,6 +126,7 @@ export class Tab1Page implements OnInit{
 
     await alert.present();
   }
+
   loading = this.loadingController.create({
     message: "Fetching cow list"
   });

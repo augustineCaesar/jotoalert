@@ -4,8 +4,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    // loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-    loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    // loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'login',
@@ -19,18 +19,18 @@ const routes: Routes = [
     path: 'createcow',
     loadChildren: () => import('./main/createcow/createcow.module').then( m => m.CreatecowPageModule)
   },
-  {
-    path: 'tab1',
-    loadChildren: () => import('./tab1/tab1.module').then( m => m.Tab1PageModule)
-  },
-  {
-    path: 'tab2',
-    loadChildren: () => import('./tab2/tab2.module').then( m => m.Tab2PageModule)
-  },
-  {
-    path: 'tab3',
-    loadChildren: () => import('./tab3/tab3.module').then( m => m.Tab3PageModule)
-  },
+  // {
+  //   path: 'tab1',
+  //   loadChildren: () => import('./tab1/tab1.module').then( m => m.Tab1PageModule)
+  // },
+  // {
+  //   path: 'tab2',
+  //   loadChildren: () => import('./tab2/tab2.module').then( m => m.Tab2PageModule)
+  // },
+  // {
+  //   path: 'tab3',
+  //   loadChildren: () => import('./tab3/tab3.module').then( m => m.Tab3PageModule)
+  // },
   {
     path: 'tab4',
     loadChildren: () => import('./tab4/tab4.module').then( m => m.Tab4PageModule)
@@ -38,6 +38,14 @@ const routes: Routes = [
   {
     path: 'manage',
     loadChildren: () => import('./main/manage/manage.module').then( m => m.ManagePageModule)
+  },
+  {
+    path: 'forgot',
+    loadChildren: () => import('./auth/forgot/forgot.module').then( m => m.ForgotPageModule)
+  },
+  {
+    path: 'notices',
+    loadChildren: () => import('./main/notices/notices.module').then( m => m.NoticesPageModule)
   }
 ];
 @NgModule({

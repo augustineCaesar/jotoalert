@@ -18,3 +18,9 @@ export interface Cow {
     milkingRoutine: string;
 
 }
+
+export interface Notice {
+    id: string;
+    name: string;
+    message: string
+}

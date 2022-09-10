@@ -8,7 +8,7 @@
       <!-- <ion-button>
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
       </ion-button> -->
-      <ion-button routerLink="/tab1">
+      <ion-button routerLink="/tabs/tab1">
         back
       </ion-button>
     </ion-buttons>
@@ -141,8 +141,15 @@
         <ion-note slot="error" *ngIf="(currentManager.dirty || currentManager.touched) &&  currentManager.errors ">currentManager Invalid</ion-note>
       </ion-item>
 
+      <br>
+
       
       <ion-footer collapse="fade">
+       <ion-item>
+        <ion-button  type="button" (click)="report()" size="small" color="secondary">Animal Report</ion-button>
+        <div class="spacer"></div>
+        <ion-button  type="button" (click)="delete()" size="small" color="danger">Delete cow</ion-button>
+      </ion-item>
         <ion-toolbar class="bottom">
           <ion-button expand="full" type="submit" [disabled]="!cowForm.valid">submit</ion-button>
         </ion-toolbar>

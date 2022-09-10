@@ -1,10 +1,12 @@
+
+
 <ion-header [translucent]="true"  class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="secondary">
       <!-- <ion-button>
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
       </ion-button> -->
-      <ion-button >
+      <ion-button  routerLink="/notices">
         <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -15,37 +17,56 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+
   <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
+  
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+  
   
   <!-- <ion-button (click)="basicNotifier()">
     <ion-icon slot="start" name="star"></ion-icon>
     Notify 
   </ion-button> -->
 
-  <ion-card *ngFor="let cow of cowList  | filter:filterTerm ">
+  <ion-list>
+    <ion-list-header> Recent </ion-list-header>
+    <ion-item *ngFor="let cow of cowList  | filter:filterTerm ">
+      <ion-avatar slot="start">
+        <img src="./../../assets/cowpic.jpg" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{cow.name}}</h2>
+        <h3>Tag no.{{cow.tag_no}}</h3>
+        <p>State: {{cow.isHeifer}}/ {{cow.isServed}}</p>
+      </ion-label>
+      <ion-button fill="outline" slot="end" (click)="manage(cow)" >Manage </ion-button>
+    </ion-item>
+  </ion-list>
+
+
+  <!-- <ion-card *ngFor="let cow of cowList  | filter:filterTerm ">
     <img src="./../../assets/cowpic.jpg" alt="" srcset="" class="cowPic">
     <ion-card-header>
-      <ion-card-title>{{cow.name}}</ion-card-title>
-      <ion-card-subtitle>{{cow.tag_no}}</ion-card-subtitle> 
+      <ion-card-title> Name:{{cow.name}}</ion-card-title>
+      <ion-card-subtitle>Tag no.{{cow.tag_no}}</ion-card-subtitle> 
     </ion-card-header>
-  
     <ion-item>
-      {{cow.isHeifer}}/ {{cow.isServed}}
+      State: {{cow.isHeifer}}/ {{cow.isServed}}
     </ion-item>
     <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
       
     </ion-card-content>
     <ion-item (click)="manage(cow)">
       <ion-button fill="outline" slot="end">Manage </ion-button>
     </ion-item>
     
-  </ion-card>
+  </ion-card> -->
   
  
   

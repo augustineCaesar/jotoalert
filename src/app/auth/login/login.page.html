@@ -3,7 +3,7 @@
   <form [formGroup]="credentials" (ngSubmit)="login()" class="form">
 
     <ion-text>
-      <h1>Log In</h1>
+      <h1>Log In</h1> 
     </ion-text>
 
     <br><br>
@@ -18,7 +18,7 @@
     <ion-item class="ion-margin-botton">
       <ion-label position="floating">Password</ion-label>
       <ion-input type="password" placeholder="password" formControlName="password"></ion-input>
-      <ion-note  *ngIf="(password.dirty || password.touched) &&  password.errors ">Password Invalid</ion-note>
+      <ion-note  *ngIf="(password.dirty || password.touched) &&  password.errors ">Password Invalid: should be longer</ion-note>
     </ion-item>
     <br>
     <ion-button expand="full" type="submit" [disabled]="!credentials.valid">Login</ion-button>

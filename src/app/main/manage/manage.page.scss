@@ -1,8 +1,10 @@
 
 
 ion-card {
-    --background: rgb(105, 119, 241);
+    --background: rgb(105, 180, 241);
 }
+
+
 
 ion-item {
     // --background: white;
@@ -21,3 +23,8 @@ ion-toolbar {
     --padding-bottom: 10px;
     --color: #3880ff;
   }
+
+.spacer {
+  width: 50px !important;
+  height: 1px !important;
+}

@@ -1,0 +1,29 @@
+<ion-content>
+
+  <form [formGroup]="emailForm" (ngSubmit)="resetPasswordEmail()" class="form">
+
+    <ion-text>
+      <h1>Enter your email</h1>
+    </ion-text>
+
+    <br>
+    {{loadingMessage}}
+    <br>
+
+    <ion-item class="ion-margin-botton">
+      
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" placeholder="email" formControlName="email"></ion-input>
+      <ion-note  *ngIf="(email.dirty || email.touched) &&  email.errors ">Email Invalid</ion-note>
+    </ion-item>
+
+ 
+    <br>
+    <ion-button expand="full" type="submit" >Submit</ion-button>
+  </form> 
+
+<br> <br> <br> <br>
+
+
+
+</ion-content>
