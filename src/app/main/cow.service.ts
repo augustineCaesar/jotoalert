@@ -70,7 +70,7 @@ export class CowService {
       // console.log(doc.id, " => ", doc.data());
     });
     console.dir(this.noticeList);
-    this.cowSubject.next(this.noticeList);
+    this.noticeSubject.next(this.noticeList);
   }
 
   async updateCow(postCow: Cow){
@@ -122,7 +122,7 @@ export class CowService {
   }
   async deleteNotice( notice: Notice) {
     try {
-      const c = await deleteDoc(doc(this.firestore, "notices", notice.id));
+      const c = await deleteDoc(doc(this.firestore, "notices", notice.idx));
       console.log('deleted', c);
       this.getNotices();
       return true; 

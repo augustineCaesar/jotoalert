@@ -25,7 +25,7 @@ export class NoticesPage implements OnInit {
 
   async getAll() {
     (await this.loading).present();
-     await this.cowService.getCows();
+     await this.cowService.getNotices();
      console.log('hapa');
     this.cowSub = this.cowService.noticeSubject.subscribe(s => {
 
@@ -36,7 +36,12 @@ export class NoticesPage implements OnInit {
 
      (await this.loading). dismiss();
    }
-  unread() {}
+  delete(note) {
+    const i = this.noticeList.indexOf(note);
+    if(i > -1 ){
+      this.noticeList.splice(i, 1);
+    }
+  }
 
   loading = this.loadingController.create({
     message: "Fetching notifications"

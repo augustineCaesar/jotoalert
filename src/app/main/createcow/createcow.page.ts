@@ -36,6 +36,7 @@ export class CreatecowPage implements OnInit {
     this.cowForm.get('isHeifer').valueChanges
     .subscribe(value => {
       console.log(value);
+      
       if(value == 'isHeifer') {
         this.izHeifer = true;
         this.isCow = false;
@@ -59,7 +60,7 @@ export class CreatecowPage implements OnInit {
       } else {
         let val = Math.floor(1000 + Math.random() * 9000);
         this.cowForm.value.cycleStage = 'Check Heat';
-        this.AdvancedNotifier(this.cowForm.value.tag_no, "Check Heat Signs", val, 3000);
+        this.AdvancedNotifier(this.cowForm.value.tag_no, "Check Heat Signs again", val, 5000);
       }
       
     }
@@ -96,20 +97,11 @@ export class CreatecowPage implements OnInit {
 
   }
 
-  uploadNotification(id: any,name: string,  message: string ) {
-    console.log(' call back triggered');
-    let val = Math.floor(1000 + Math.random() * 9000);
-    let nu: Notice;
-    nu.id = id || val;
-    nu.name = name ;
-    nu.message = message;
-    this.cowService.uploadNotice(nu);
-  }
 
   async basicNotifier(cID:string, msg: string, nid: number ) {
     await LocalNotifications.schedule({
          notifications: [{
-          title: 'Joto Alert: weaning reminder',
+          title: msg,
           body: `cow tag_no ${cID} : msg`,
           id: nid,
           iconColor: '#0000ff', 
@@ -124,10 +116,25 @@ export class CreatecowPage implements OnInit {
       // remember to update notification page, and update cycle stage? and schedule another notification? 
       // this.showAlert(`Received: ${notification.id}`,`Custom Data: ${JSON.stringify(notification.extra)}`);
       // console.log(notification.id);
-      this.uploadNotification(notification.id, notification.title, notification.body);
+      console.log(`Received: ${notification.id}, name: ${notification.title},  name: ${notification.body}, `)
+      this.uploadNotification(JSON.stringify(notification.id), notification.title, notification.body);
     });
 
   }
+
+  uploadNotification(idx: any,name: string,  message: string ) {
+    console.log(' call back triggered');
+    let val = Math.floor(1000 + Math.random() * 9000);
+    let nu: Notice = {
+      name : name || 'default name' ,
+      message : message || 'default message',
+      idx : '1298',
+    }
+    
+    
+    this.cowService.uploadNotice(nu);
+  }
+
 
 
   async AdvancedNotifier(cID:string, msg: string, nid: number, schedule: any ) {
@@ -139,7 +146,7 @@ export class CreatecowPage implements OnInit {
           iconColor: '#0000ff', 
           schedule: {at: new Date(Date.now() + schedule)},
           extra: {
-            data: "this is new for me"
+            data: "....."
           },
         }]
     });

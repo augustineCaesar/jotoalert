@@ -29,6 +29,7 @@
     "@ionic/pwa-elements": "^3.1.1",
     "cordova-plugin-file-opener2": "^3.0.5",
     "ionicons": "^6.0.3",
+    "jetifier": "^2.0.0",
     "ng2-search-filter": "^0.5.1",
     "pdfmake": "^0.2.5",
     "rxjs": "~6.6.0",
