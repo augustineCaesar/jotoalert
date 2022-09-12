@@ -1,18 +1,32 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>Notices</ion-title>
+    <ion-title>Notifications</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor="let notice of noticeList" >
       <ion-item>
-        <ion-label>Item</ion-label>
+        <ion-label>{{notice.name}}</ion-label>
+        <ion-label>
+          <h2>{{notice.message}}</h2>
+        </ion-label>
       </ion-item>
       <ion-item-options side="end">
         <ion-item-option (click)="unread()">Delete</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
+  <!-- <ion-list>
+    <ion-list-header> Recent </ion-list-header>
+    <ion-item *ngFor="let cow of noticeList ">
+      <ion-label>
+        <h2>{{notice.name}}</h2>
+        <h3>Tag no.{{notice.img}}</h3>
+        <p>State: {{notice.date}}/ {{cow.isServed}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list> -->
 </ion-content>

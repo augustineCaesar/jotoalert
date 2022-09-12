@@ -37,14 +37,15 @@ export class CowService {
   
   }
 
-  async uploadNotice(postCow: Cow) {
+  async uploadNotice(notice: Notice) {
         try {
           // await setDoc(doc(this.firestore, "cows", postCow.tag_no), postCow);
           // console.log('cow uploaded successfully');
-          const docRef = await addDoc(collection(this.firestore, "notices"), postCow);
+          const docRef = await addDoc(collection(this.firestore, "notices"), notice);
           console.log("Document written with ID: ", docRef.id);
           return true;
         } catch (error) {
+          console.log('error here: ', error);
           return null;
         }
     }
@@ -91,11 +92,11 @@ export class CowService {
         inseminationType: postCow.inseminationType,
         currentManager: postCow.currentManager,
         county: postCow.county,
-        // cycleStage: postCow.cycleStage,
-        // hasCalves: postCow.hasCalves,
-        // calvingTimes: postCow.calvingTimes,
-        // milkProduction: postCow.milkProduction,
-        // milkingRoutine: postCow.milkingRoutine
+        cycleStage: postCow.cycleStage || '',
+        hasCalves: postCow.hasCalves || '',
+        calvingTimes: postCow.calvingTimes || '',
+        milkProduction: postCow.milkProduction || '',
+        milkingRoutine: postCow.milkingRoutine || ''
       },
      
       );

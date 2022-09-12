@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalNotifications, LocalNotificationSchema } from '@capacitor/local-notifications';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
+import { Notice } from 'src/app/interfaces/cow';
 import { CowService } from '../cow.service';
 
 @Component({
@@ -53,27 +54,31 @@ export class CreatecowPage implements OnInit {
       if(this.cowForm.value.isShowingHeat = 'Yes') {
         //show notification now
         this.cowForm.value.cycleStage = 'Inseminate';
-        this.basicNotifier(this.cowForm.value.tag_no, "Inseminate the Heifer", 6725);
+        let val = Math.floor(1000 + Math.random() * 9000);
+        this.basicNotifier(this.cowForm.value.tag_no, "Inseminate the Heifer", val);
       } else {
+        let val = Math.floor(1000 + Math.random() * 9000);
         this.cowForm.value.cycleStage = 'Check Heat';
-        this.AdvancedNotifier(this.cowForm.value.tag_no, "Check Heat Signs", 98378, 3000);
+        this.AdvancedNotifier(this.cowForm.value.tag_no, "Check Heat Signs", val, 3000);
       }
       
     }
     // 
     if(this.cowForm.value.isHeifer = 'isCow'){
       if(this.cowForm.value.isServed = 'true'){
-        this.basicNotifier(this.cowForm.value.tag_no, "Check Heat again", 678325);
+        let val = Math.floor(1000 + Math.random() * 9000);
+        this.basicNotifier(this.cowForm.value.tag_no, "Check Heat again", val);
       } else {
-        this.AdvancedNotifier(this.cowForm.value.tag_no, "Check Heat Signs", 98378, 3000);
+        let val = Math.floor(1000 + Math.random() * 9000);
+        this.AdvancedNotifier(this.cowForm.value.tag_no, "Check Heat Signs", val, 3000);
       }
     }
     const loading = this.loadingController.create({
       message: 'Adding cow....'
     });
     (await loading).present();
-
-     const cow = await this.cowService.uploadCow(this.cowForm.value);
+    if(this.cowForm)
+    var cow = await this.cowService.uploadCow(this.cowForm.value);
 
     (await loading).dismiss();
 
@@ -89,6 +94,16 @@ export class CreatecowPage implements OnInit {
       this.showAlert('Adding cow failed', 'Please try again'); 
     }
 
+  }
+
+  uploadNotification(id: any,name: string,  message: string ) {
+    console.log(' call back triggered');
+    let val = Math.floor(1000 + Math.random() * 9000);
+    let nu: Notice;
+    nu.id = id || val;
+    nu.name = name ;
+    nu.message = message;
+    this.cowService.uploadNotice(nu);
   }
 
   async basicNotifier(cID:string, msg: string, nid: number ) {
@@ -107,8 +122,9 @@ export class CreatecowPage implements OnInit {
 
     LocalNotifications.addListener('localNotificationReceived',(notification: LocalNotificationSchema)=>{
       // remember to update notification page, and update cycle stage? and schedule another notification? 
-      this.showAlert(`Received: ${notification.id}`,`Custom Data: ${JSON.stringify(notification.extra)}`);
-      console.log(notification.id);
+      // this.showAlert(`Received: ${notification.id}`,`Custom Data: ${JSON.stringify(notification.extra)}`);
+      // console.log(notification.id);
+      this.uploadNotification(notification.id, notification.title, notification.body);
     });
 
   }
